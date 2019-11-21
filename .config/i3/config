@@ -141,18 +141,31 @@ bindsym XF86MonBrightnessUp exec "light -A 10"
 bindsym XF86MonBrightnessDown exec "light -U 10"
 
 #Volume control
-bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume 0 +10%"
-bindsym XF86AudioLowerVolume exec "pactl set-sink-volume 0 -10%"
-bindsym XF86AudioMute exec "pactl set-sink-mute 0 toggle"
+bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +5%"
+bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+
+bindsym XF86AudioPlay exec "playerctl play-pause"
+bindsym XF86AudioStop exec "playerctl stop"
+bindsym XF86AudioNext exec "playerctl next"
+bindsym XF86AudioPrev exec "playerctl previous"
+
+bindsym Mod1+j exec "playerctl play-pause"
+bindsym Mod1+k exec "playerctl stop"
+bindsym Mod1+l exec "playerctl next"
+bindsym Mod1+h exec "playerctl previous"
 
 #Autostart
-exec --no-startup-id "setxkbmap -option caps:escape"
+exec --no-startup-id "setxkbmap -model abnt2 -layout br -variant abnt2 && setxkbmap -option caps:swapescape"
+exec --no-startup-id "xset led 3"
 exec --no-startup-id "polybar example"
-exec --no-startup-id "nitrogen --restore"
-exec --no-startup-id "xss-lock -- i3lock -i Pictures/nebula-1920x1080-space-stars-5k-17811.png"
+exec --no-startup-id "blueman-applet"
+exec --no-startup-id "xss-lock -- i3lock -i ~/.wallpaper"
+exec --no-startup-id "feh --bg-fill ~/.wallpaper"
+
 
 bindsym Mod1+space exec "rofi -combi-modi window,drun -show combi -modi combi"
-bindsym $mod+Mod1+0 exec "i3lock -i Pictures/nebula-1920x1080-space-stars-5k-17811.png"
+bindsym $mod+Mod1+0 exec "i3lock -i ~/.wallpaper"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
