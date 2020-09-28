@@ -17,7 +17,7 @@ Arch linux rice with bspwm and polybar
 - Application launcher - [rofi](https://github.com/davatorium/rofi)
 - Lockscreen - [betterlockscreen](https://github.com/pavanjadhaw/betterlockscreen)
 - Notifications - [dunst](https://github.com/dunst-project/dunst)
-- Editor [spacevim](https://github.com/SpaceVim/SpaceVim)
+- Editor - [spacevim](https://github.com/SpaceVim/SpaceVim)
 
 ### Dependencies
 
