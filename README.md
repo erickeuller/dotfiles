@@ -9,7 +9,7 @@ Arch linux rice with bspwm and polybar
 
 - WM - [bspwm](https://github.com/baskerville/bspwm)
 - Key binder - [sxhkd](https://github.com/baskerville/sxhkd)
-- Statu bar - [polybar](https://github.com/polybar/polybar)
+- Status bar - [polybar](https://github.com/polybar/polybar)
 - Terminal - [alacritty](https://github.com/alacritty/alacritty)
 - GTK Theme - [nordic](https://github.com/EliverLara/Nordic)
 - Shell - [zsh](https://github.com/ohmyzsh/ohmyzsh)
