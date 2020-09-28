@@ -29,4 +29,5 @@ setxkbmap -option caps:swapescape
 $HOME/.config/polybar/launch.sh &
 picom &
 dunst $HOME/.config/dunst/dunstrc &
+wmname LG3D & 
 feh --bg-center $HOME/.wall

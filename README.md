@@ -28,6 +28,7 @@ Arch linux rice with bspwm and polybar
 - [light](https://github.com/haikarainen/light)
 - [feh](https://wiki.archlinux.org/index.php/feh)
 - [scrot](https://github.com/resurrecting-open-source-projects/scrot)
+- [wmname](https://www.archlinux.org/packages/community/x86_64/wmname/)
 
 
 ### [Optional] Applications
