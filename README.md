@@ -2,6 +2,8 @@
 
 Arch linux rice with bspwm and polybar
 
+![clean-preview](./clean-preview.jpg)
+![busy-preview](./busy-preview.jpg)
 
 ### Applications
 
