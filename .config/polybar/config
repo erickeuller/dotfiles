@@ -225,7 +225,7 @@ label = %gb_free%
 [module/playerctl]
 type = custom/script
 format = <label>
-exec = playerctl metadata > /dev/null 2> /dev/null && playerctl metadata --format "  {{ title }} - {{ artist }}"
+exec = playerctl metadata > /dev/null 2> /dev/null && echo "  $(playerctl metadata --format "{{ title }} - {{ artist }}")"
 click-left = playerctl previous
 click-middle = playerctl play-pause
 click-right = playerctl next

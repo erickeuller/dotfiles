@@ -29,4 +29,4 @@ setxkbmap -option caps:swapescape
 $HOME/.config/polybar/launch.sh &
 picom &
 dunst $HOME/.config/dunst/dunstrc &
-feh --bg-center $HOME/Pictures/wallpapers/wall.jpg
+feh --bg-center $HOME/.wall
