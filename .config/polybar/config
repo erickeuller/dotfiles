@@ -39,7 +39,7 @@ font-5 = Font Awesome 5 Brands:pixelsize=12;2
 ; module positions
 modules-left = bspwm  
 modules-center = playerctl
-modules-right = bluetooth alsa wireless-network wired-network memory cpu battery date
+modules-right = bluetooth pulseaudio wireless-network wired-network memory cpu battery date
 
 ; scrolling action on the topbar
 scroll-up = bspwm-desknext
@@ -119,8 +119,8 @@ date = %Y-%m-%d%
 time = %H:%M
 label = %date% | %time%
 
-[module/alsa]
-type = internal/alsa
+[module/pulseaudio]
+type = internal/pulseaudio
 format-volume = <bar-volume>
 format-volume-margin = 2.5
 
