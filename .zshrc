@@ -72,6 +72,7 @@ plugins=(
   git
   sudo
   mvn
+  kubectl
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -103,6 +104,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export TERMINAL=alacritty
 export XDG_DATA_DIRS=/var/lib/flatpak/exports/share:$XDG_DATA_DIRS
-export XDG_DATA_DIRS=/home/erick/.local/share/flatpak/exports/share:$XDG_DATA_DIRS
+export XDG_DATA_DIRS=$HOME/.local/share/flatpak/exports/share:$XDG_DATA_DIRS
+export PATH=$HOME/.local/bin:$PATH
 export LC_ALL=en_US.UTF-8
-export _JAVA_AWT_WM_NONREPARENTING=1
+#export _JAVA_AWT_WM_NONREPARENTING=1

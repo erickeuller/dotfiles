@@ -8,7 +8,10 @@ killall -q polybar
 # Launch bar1 and bar2
 echo "---" | tee -a /tmp/polybar1.log /tmp/polybar2.log
 polybar topbar >>/tmp/polybar1.log 2>&1 & disown
-#polybar bottombar >>/tmp/polybar2.log 2>&1 & disown
 
+if [[ $(xrandr | grep "HDMI-1 connected 1920x1080") ]]; then
+  export MONITOR=HDMI-1
+  polybar topbar >>/tmp/polybar1.log 2>&1 & disown
+fi
 
 echo "Bars launched..."

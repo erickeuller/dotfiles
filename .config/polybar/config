@@ -19,9 +19,11 @@ padding-left = 0
 padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
+line-size = 2
 tray-position = none
 tray-padding = 2
-wm-restack = bspwm
+wm-restack = i3
+monitor = ${env:MONITOR:eDP-1}
 
 ; bar color
 border-color = #0D00564d
@@ -37,13 +39,13 @@ font-4 = Font Awesome 5 Free Solid:pixelsize=12;2
 font-5 = Font Awesome 5 Brands:pixelsize=12;2
 
 ; module positions
-modules-left = bspwm  
+modules-left = i3  
 modules-center = playerctl
 modules-right = bluetooth pulseaudio wireless-network wired-network memory cpu battery date
 
 ; scrolling action on the topbar
-scroll-up = bspwm-desknext
-scroll-down = bspwm-deskprev
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
 
 ; cursor shape when hovering and scrolling over bar icons
 cursor-click = pointer
@@ -61,36 +63,65 @@ type = internal/xkeyboard
 blacklist-0 = caps lock
 blacklist-1 = num lock
 
-[module/bspwm]
-type = internal/bspwm
-label-focused-foreground = ffffff
-label-focused = 
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
+[module/i3]
+type = internal/i3
+pin-workspaces = true
 
-; set label properties
-label-occupied = %icon%
-label-occupied-padding = 2
-label-occupied-foreground = ffffff
-label-urgent = %icon%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-label-empty = 
-label-empty-foreground = ffffff
-label-empty-padding = 2
+format = <label-state> <label-mode>
 
-; set icons for workspace states
-ws-icon-0 = I;
-ws-icon-1 = II;
-ws-icon-2 = III;
-ws-icon-3 = IV;
-ws-icon-4 = V;
-ws-icon-5 = VI;
-ws-icon-6 = VII;
-ws-icon-7 = VIII;
-ws-icon-8 = IX;
-ws-icon-9 = X;
+; Available tokens:
+;   %mode%
+; Default: %mode%
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = ${colors.background}
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-focused = %index%
+label-focused-foreground = ${colors.foreground}
+label-focused-background = ${colors.background}
+label-focused-underline = ${colors.foreground}
+label-focused-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-unfocused = %index%
+label-unfocused-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-visible = %index%
+label-visible-underline = ${colors.foreground}
+label-visible-padding = 4
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-urgent = %index%
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+label-urgent-padding = 4
+
+; Separator in between workspaces
+label-separator = 
+label-separator-padding = 2
+label-separator-foreground = #ffb52a
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -135,7 +166,7 @@ bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
 label-muted = 
-label-muted-foreground = #5c2735
+label-muted-foreground = ${colors.foreground}
 
 [module/battery]
 type = internal/battery
@@ -224,13 +255,22 @@ label = %gb_free%
 
 [module/playerctl]
 type = custom/script
-format = <label>
-exec = playerctl metadata > /dev/null 2> /dev/null && echo "  $(playerctl metadata --format "{{ title }} - {{ artist }}")"
+format =   <label>
+exec = playerctl metadata --format "{{ title }} - {{ artist }}"
+exec-if = playerctl metadata
 click-left = playerctl previous
 click-middle = playerctl play-pause
 click-right = playerctl next
 
 [module/bluetooth]
 type = custom/script
+format =  <label> 
+exec = bluetoothctl info | awk '/Name/ {$1=""; print $0}'
+exec-if = bluetoothctl -- info | grep Device
+
+[module/bluetooth-battery]
+type = custom/script
 format = <label> 
-exec = [[ $(bluetoothctl -- info | grep Device) ]] && echo 
+exec = ~/.local/bin/bluetooth_battery $(bluetoothctl info | awk '/^Device/ {print $2}') | awk '{print $6}'
+exec-if = bluetoothctl -- info | grep Device
+interval = 10
