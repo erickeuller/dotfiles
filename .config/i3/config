@@ -211,6 +211,8 @@ exec --no-startup-id dunst $HOME/.config/dunst/dunstrc
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
+for_window [class="jetbrains-idea" title="win0"] floating enable;
+
 # Gaps
 for_window [class=".*"] border pixel 2
 
