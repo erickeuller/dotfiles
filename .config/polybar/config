@@ -41,7 +41,7 @@ font-5 = Font Awesome 5 Brands:pixelsize=12;2
 ; module positions
 modules-left = i3  
 modules-center = playerctl
-modules-right = bluetooth pulseaudio wireless-network wired-network memory cpu battery date
+modules-right = bluetooth microphone pulseaudio wireless-network wired-network memory cpu battery date
 
 ; scrolling action on the topbar
 scroll-up = i3wm-wsnext
@@ -274,3 +274,10 @@ format = <label>
 exec = ~/.local/bin/bluetooth_battery $(bluetoothctl info | awk '/^Device/ {print $2}') | awk '{print $6}'
 exec-if = bluetoothctl -- info | grep Device
 interval = 10
+
+[module/microphone]
+type = custom/script
+format = <label>
+exec = if [[ $(pacmd list-sources | awk '/\*/,EOF {print}' | awk '/muted/ {print $2; exit}') = "yes" ]] ; then echo ; else echo ; fi
+click-left= pactl set-source-mute @DEFAULT_SOURCE@ toggle
+tail = true
