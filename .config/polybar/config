@@ -278,6 +278,6 @@ interval = 10
 [module/microphone]
 type = custom/script
 format = <label>
-exec = if [[ $(pacmd list-sources | awk '/\*/,EOF {print}' | awk '/muted/ {print $2; exit}') = "yes" ]] ; then echo ; else echo ; fi
+exec = if [ $(pacmd list-sources | awk '/\*/,EOF {print}' | awk '/muted/ {print $2; exit}') = "yes" ] ; then echo ; else echo ; fi
 click-left= pactl set-source-mute @DEFAULT_SOURCE@ toggle
 tail = true
