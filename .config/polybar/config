@@ -200,7 +200,7 @@ margin-bottom = 5
 
 [module/wireless-network]
 type = internal/network
-interface = wlp3s0
+interface = ${env:WIFI_DEVICE}
 
 format-connected =   <label-connected>
 
